@@ -1,9 +1,9 @@
-Identity and Access Management (IAM)
-[aad_password_policy] Ensure Azure AD password policies are properly configured - IAM [high]
-[aad_mfa_enforced] Ensure multi-factor authentication is enabled for all users - IAM [high]
-[aad_conditional_access] Ensure conditional access policies are configured - IAM [medium]
-[aad_privileged_roles] Ensure privileged roles are reviewed and minimized - IAM [high]
-[aad_audit_logs_enabled] Ensure Azure AD audit logs are enabled - IAM [medium]
+#Identity and Access Management (IAM)
+#[aad_password_policy] Ensure Azure AD password policies are properly configured - IAM [high]
+#[aad_mfa_enforced] Ensure multi-factor authentication is enabled for all users - IAM [high]
+#[aad_conditional_access] Ensure conditional access policies are configured - IAM [medium]
+#[aad_privileged_roles] Ensure privileged roles are reviewed and minimized - IAM [high]
+#[aad_audit_logs_enabled] Ensure Azure AD audit logs are enabled - IAM [medium]
 [aad_sign_in_logs_enabled] Ensure Azure AD sign-in logs are enabled - IAM [medium]
 [aad_app_registrations] Ensure app registrations are reviewed and managed - IAM [medium]
 [aad_guest_accounts] Ensure guest accounts are reviewed and managed - IAM [medium]
