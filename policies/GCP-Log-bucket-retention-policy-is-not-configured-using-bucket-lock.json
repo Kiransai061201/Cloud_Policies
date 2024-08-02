@@ -1,0 +1,23 @@
+{
+  "policyUpi": "PC-GCP-LOG-695",
+  "policyId": "14356227-d5c6-4151-b885-4f21437f820a",
+  "policyType": "config",
+  "cloudType": "gcp",
+  "severity": "medium",
+  "name": "GCP Log bucket retention policy is not configured using bucket lock",
+  "description": "This policy identifies GCP log buckets for which retention policy is not configured using bucket lock. It is recommended to configure the data retention policy for cloud storage buckets using bucket lock to permanently prevent the policy from being reduced or removed in case the system is compromised by an attacker or a malicious insider.\n\nNote: Locking a bucket is an irreversible action. Once you lock a bucket, you cannot remove the retention policy from the bucket or decrease the retention period for the policy.",
+  "rule.criteria": "af387221-b6b9-4fa5-a9e5-b4ee665b9e4d",
+  "searchModel.query": "config from cloud.resource where api.name = 'gcloud-logging-sinks-list' AND json.rule = 'destination.bucket exists' as X; config from cloud.resource where api.name = 'gcloud-storage-buckets-list' AND json.rule = (retentionPolicy.isLocked does not exist or retentionPolicy.isLocked is false) as Y; filter '($.X.destination.bucket contains $.Y.name)'; show Y;",
+  "recommendation": "To set a retention policy on a bucket, please refer to the URL given below:\nhttps://cloud.google.com/storage/docs/using-bucket-lock#set-policy\n\nTo lock a bucket, please refer to the URL given below:\nhttps://cloud.google.com/storage/docs/using-bucket-lock#lock-bucket",
+  "remediable": false,
+  "remediation.cliScriptTemplate": "",
+  "remediation.description": "",
+  "remediation.impact": "",
+  "compliance.standard": [
+    "ACSC Information Security Manual (ISM)",
+    "CIS Controls v7.1",
+    "CIS Controls v8",
+    "CIS v1.3.0 (GCP)",
+    "PCI DSS v4.0"
+  ]
+}

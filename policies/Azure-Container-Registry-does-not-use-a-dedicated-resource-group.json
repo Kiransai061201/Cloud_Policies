@@ -1,0 +1,33 @@
+{
+  "policyUpi": "PC-AZR-ACR-357",
+  "policyId": "dba41206-2374-4215-b812-a2fcf811e8e7",
+  "policyType": "config",
+  "cloudType": "azure",
+  "severity": "medium",
+  "name": "Azure Container Registry does not use a dedicated resource group",
+  "description": "Placing your Azure Container Registry (ACR) in a dedicated Azure resource group, allows you to minimize the risk of accidentally deleting the collection of images in the registry when you delete the container instance resource group.\nThis policy identifies ACRs that reside in resource groups that contains non-ACR resources. For more information about ACR best practices, visit https://docs.microsoft.com/en-us/azure/container-registry/container-registry-best-practices",
+  "rule.criteria": "c378030b-3441-455f-852c-b21bcb309373",
+  "searchModel.query": "config from cloud.resource where cloud.type='azure' and api.name= 'azure-container-registry'   as X; config from cloud.resource where api.name = 'azure-resource-group' as Y; filter ' $.X.resourceGroupName equals $.Y.name and $.Y.isDedicatedContainerRegistryGroup is false' ; show X;",
+  "recommendation": "To remediate this alert, move all non-ACR resources to another resource group.\n\nFor more information about moving resources to another security group, visit [https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-move-resources|https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-move-resources]",
+  "remediable": false,
+  "remediation.cliScriptTemplate": "",
+  "remediation.description": "",
+  "remediation.impact": "",
+  "compliance.standard": [
+    "APRA (CPS 234) Information Security",
+    "Brazilian Data Protection Law (LGPD)",
+    "CIS Controls v7.1",
+    "CIS Controls v8",
+    "CSA CCM v.4.0.1",
+    "Cybersecurity Maturity Model Certification (CMMC) v.1.02",
+    "HITRUST v.9.4.2",
+    "ISO/IEC 27002:2013",
+    "ISO/IEC 27017:2015",
+    "ISO/IEC 27018:2019",
+    "NIST CSF",
+    "NIST SP 800-171 Revision 2",
+    "NIST SP 800-172",
+    "New Zealand Information Security Manual (NZISM v3.4)",
+    "PCI DSS v3.2.1"
+  ]
+}

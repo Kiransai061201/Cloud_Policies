@@ -1,0 +1,33 @@
+{
+  "policyUpi": "PC-AZR-CMP-568",
+  "policyId": "3ad45ee2-b88d-4cd3-a039-0844c5687fcd",
+  "policyType": "config",
+  "cloudType": "azure",
+  "severity": "low",
+  "name": "Azure Virtual Machine scale sets Boot Diagnostics Disabled",
+  "description": "This policy identifies Azure Virtual Machines scale sets which has Boot Diagnostics setting Disabled. Boot Diagnostics when enabled for virtual machine, captures Screenshot and Console Output during virtual machine startup. This would help in troubleshooting virtual machine when it enters a non-bootable state.",
+  "rule.criteria": "bd5452cc-dc1c-456a-a66f-be8b162dd4ea",
+  "searchModel.query": "config from cloud.resource where cloud.type = 'azure' AND api.name = 'azure-virtual-machine-scale-set' AND json.rule = properties.virtualMachineProfile.diagnosticsProfile.bootDiagnostics.enabled is false",
+  "recommendation": "1. Log in to the Azure Portal\n2. Select 'All services' from the left pane\n3. Go to 'Compute' under 'Categories'\n4. Select 'Virtual Machine scale sets'\n5. Select the reported virtual machine scale sets\n6. Click on 'Boot Diagnostics' under 'Support + troubleshooting'\n7. Select 'On'\n8. Click on 'Save'",
+  "remediable": false,
+  "remediation.cliScriptTemplate": "",
+  "remediation.description": "",
+  "remediation.impact": "",
+  "compliance.standard": [
+    "ACSC Information Security Manual (ISM)",
+    "APRA (CPS 234) Information Security",
+    "CIS Controls v7.1",
+    "CIS Controls v8",
+    "CSA CCM v.4.0.1",
+    "FFIEC",
+    "HITRUST v.9.4.2",
+    "ISO/IEC 27002:2013",
+    "ISO/IEC 27017:2015",
+    "NIST CSF",
+    "NIST SP 800-171 Revision 2",
+    "NIST SP 800-172",
+    "New Zealand Information Security Manual (NZISM v3.4)",
+    "PCI DSS v3.2.1",
+    "PCI DSS v4.0"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "policyUpi": "PC-ALL-ALL-37",
+  "policyId": "cd94c83e-6f84-4a37-a116-13ccba78a615",
+  "policyType": "network",
+  "cloudType": "all",
+  "severity": "high",
+  "name": "Internet connectivity via TCP over insecure port",
+  "description": "This policy identifies network traffic coming from the internet which is plain text FTP, Telnet, or HTTP. It is recommended to have Security Group/Firewall Rule for the resource that has a more restrictive ACL, which does not permit connection from the internet.\n\nNote: This policy alerts AWS workloads correctly and for Azure and GCP this policy could also trigger alerts for NAT Gateway configured resources.",
+  "rule.criteria": "33d85130-385e-405d-a055-b20c2a5fc514",
+  "searchModel.query": "network from vpc.flow_record where src.ip=0.0.0.0 AND protocol='TCP' AND dest.port IN (21,23,80) AND source.publicnetwork IN ('Internet IPs', 'Suspicious IPs') AND dest.resource IN (resource where role not in ('AWS ELB', 'AWS NAT Gateway', 'AZURE ELB', 'GCP ELB')) AND accepted.bytes > 0",
+  "recommendation": "1. Log in to the Cloud Console\n2. Search for the resource reported in the alert\n3. Check if the Security Group/Firewall Rule of the resource indeed allows connections from the internet\n4. Assign another Security Group/Firewall Rule to the resource that has a more restrictive ACL, which does not permit connection from the internet",
+  "remediable": false,
+  "remediation.cliScriptTemplate": "",
+  "remediation.description": "",
+  "remediation.impact": "",
+  "compliance.standard": [
+    "GDPR",
+    "HIPAA",
+    "MITRE ATT&CK v8.2",
+    "NIST CSF",
+    "PCI DSS v3.2.1",
+    "PIPEDA",
+    "SOC 2"
+  ]
+}
